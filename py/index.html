@@ -99,6 +99,10 @@ a{color:inherit}
 
 /* ---------- brand card ---------- */
 .brand-card{margin:10px 0;border:1px solid var(--line);border-radius:var(--radius-md);background:var(--panel);box-shadow:0 6px 18px rgba(15,40,38,.05);overflow:hidden}
+.brand-card summary{list-style:none;cursor:pointer;position:relative;display:block;background:none;gap:0;padding:0 36px 0 0}
+.brand-card summary::-webkit-details-marker{display:none}
+.brand-card summary::after{content:"+";position:absolute;top:12px;right:12px;width:24px;height:24px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:16px;color:var(--cyan);background:var(--panel)}
+.brand-card[open] summary::after{content:"\2212"}
 .brand-kicker{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px 0}
 .brand-kicker-left{display:flex;align-items:center;gap:7px;min-width:0}
 .brand-kicker-left .mini-seal{flex:0 0 auto;width:16px;height:16px;border-radius:50%;background-image:var(--logo-seal);background-size:cover}
@@ -365,7 +369,8 @@ a{color:inherit}
           <span class="cat-chevron">+</span>
         </summary>
         <div class="category-body">
-          <section class="brand-card" id="emagrecedores-eticos">
+          <details class="brand-card" id="emagrecedores-eticos">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -376,6 +381,7 @@ a{color:inherit}
           <div class="brand-feature logo-eticos">
             <span class="logo-img logo-eticos" role="img" aria-label="ÉTICOS"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -420,8 +426,9 @@ a{color:inherit}
                 <span class="price">R$ 1.150,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="emagrecedores-gen">
+        </details>
+          <details class="brand-card" id="emagrecedores-gen">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -432,6 +439,7 @@ a{color:inherit}
           <div class="brand-feature logo-gen-tirz">
             <span class="logo-img logo-gen-tirz" role="img" aria-label="GEN"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -546,8 +554,9 @@ a{color:inherit}
                 <span class="price">R$ 2.150,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="emagrecedores-health">
+        </details>
+          <details class="brand-card" id="emagrecedores-health">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -558,6 +567,7 @@ a{color:inherit}
           <div class="brand-feature logo-health">
             <span class="logo-img logo-health" role="img" aria-label="HEALTH"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -595,8 +605,9 @@ a{color:inherit}
                 <span class="price">R$ 2.050,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="emagrecedores-indufar">
+        </details>
+          <details class="brand-card" id="emagrecedores-indufar">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -607,6 +618,7 @@ a{color:inherit}
           <div class="brand-feature logo-indufar">
             <span class="logo-img logo-indufar" role="img" aria-label="INDUFAR"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -644,8 +656,9 @@ a{color:inherit}
                 <span class="price">R$ 850,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="emagrecedores-king-pharma">
+        </details>
+          <details class="brand-card" id="emagrecedores-king-pharma">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -656,6 +669,7 @@ a{color:inherit}
           <div class="brand-feature logo-king-pharma">
             <span class="logo-img logo-king-pharma" role="img" aria-label="KING PHARMA"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -686,8 +700,9 @@ a{color:inherit}
                 <span class="price">R$ 1.250,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="emagrecedores-landerlan">
+        </details>
+          <details class="brand-card" id="emagrecedores-landerlan">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -698,6 +713,7 @@ a{color:inherit}
           <div class="brand-feature logo-landerlan">
             <span class="logo-img logo-landerlan" role="img" aria-label="LANDERLAN"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -714,8 +730,9 @@ a{color:inherit}
                 <span class="price">R$ 1.555,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="emagrecedores-neuroceptix">
+        </details>
+          <details class="brand-card" id="emagrecedores-neuroceptix">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -726,6 +743,7 @@ a{color:inherit}
           <div class="brand-feature logo-neuroceptix">
             <span class="logo-img logo-neuroceptix" role="img" aria-label="NEUROCEPTIX"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -791,8 +809,9 @@ a{color:inherit}
                 <span class="price">R$ 1.550,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="emagrecedores-pharmacom">
+        </details>
+          <details class="brand-card" id="emagrecedores-pharmacom">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -803,6 +822,7 @@ a{color:inherit}
           <div class="brand-feature logo-pharmacom">
             <span class="logo-img logo-pharmacom" role="img" aria-label="PHARMACOM"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -819,8 +839,9 @@ a{color:inherit}
                 <span class="price">R$ 800,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="emagrecedores-quimfa">
+        </details>
+          <details class="brand-card" id="emagrecedores-quimfa">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -831,6 +852,7 @@ a{color:inherit}
           <div class="brand-feature logo-quimfa">
             <span class="logo-img logo-quimfa" role="img" aria-label="QUIMFA"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -882,8 +904,9 @@ a{color:inherit}
                 <span class="price">R$ 850,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="emagrecedores-variados">
+        </details>
+          <details class="brand-card" id="emagrecedores-variados">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -894,6 +917,7 @@ a{color:inherit}
           <div class="brand-feature logo-variados">
             <span class="logo-img logo-variados" role="img" aria-label="VARIADOS"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -959,8 +983,9 @@ a{color:inherit}
                 <span class="price">R$ 1.950,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="emagrecedores-synedica">
+        </details>
+          <details class="brand-card" id="emagrecedores-synedica">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -971,6 +996,7 @@ a{color:inherit}
           <div class="brand-feature logo-synedica">
             <span class="logo-img logo-synedica" role="img" aria-label="SYNEDICA"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -1008,8 +1034,9 @@ a{color:inherit}
                 <span class="price">R$ 2.800,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="emagrecedores-zphcd">
+        </details>
+          <details class="brand-card" id="emagrecedores-zphcd">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -1020,6 +1047,7 @@ a{color:inherit}
           <div class="brand-feature logo-zphcd">
             <span class="logo-img logo-zphcd" role="img" aria-label="ZPHCD"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -1141,7 +1169,7 @@ a{color:inherit}
                 <span class="price">R$ 2.000,00</span>
               </li>
           </ul>
-        </section>
+        </details>
         </div>
       </details>
     <details class="category" id="peptidios">
@@ -1154,7 +1182,8 @@ a{color:inherit}
           <span class="cat-chevron">+</span>
         </summary>
         <div class="category-body">
-          <section class="brand-card" id="peptidios-biovant">
+          <details class="brand-card" id="peptidios-biovant">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -1165,6 +1194,7 @@ a{color:inherit}
           <div class="brand-feature logo-biovant">
             <span class="logo-img logo-biovant" role="img" aria-label="BIOVANT"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -1419,8 +1449,9 @@ a{color:inherit}
                 <span class="price">R$ 620,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="peptidios-cooper-pharma">
+        </details>
+          <details class="brand-card" id="peptidios-cooper-pharma">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -1431,6 +1462,7 @@ a{color:inherit}
           <div class="brand-feature logo-cooper">
             <span class="logo-img logo-cooper" role="img" aria-label="COOPER PHARMA"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -1503,8 +1535,9 @@ a{color:inherit}
                 <span class="price">R$ 1.000,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="peptidios-health">
+        </details>
+          <details class="brand-card" id="peptidios-health">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -1515,6 +1548,7 @@ a{color:inherit}
           <div class="brand-feature logo-health">
             <span class="logo-img logo-health" role="img" aria-label="HEALTH"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -1769,8 +1803,9 @@ a{color:inherit}
                 <span class="price">R$ 60,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="peptidios-muscle-labs">
+        </details>
+          <details class="brand-card" id="peptidios-muscle-labs">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -1781,6 +1816,7 @@ a{color:inherit}
           <div class="brand-feature logo-muscle-labs">
             <span class="logo-img logo-muscle-labs" role="img" aria-label="MUSCLE LABS"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -1797,8 +1833,9 @@ a{color:inherit}
                 <span class="price">R$ 185,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="peptidios-neo">
+        </details>
+          <details class="brand-card" id="peptidios-neo">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -1809,6 +1846,7 @@ a{color:inherit}
           <div class="brand-feature logo-neo-peptides">
             <span class="logo-img logo-neo-peptides" role="img" aria-label="NEO"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -1860,8 +1898,9 @@ a{color:inherit}
                 <span class="price">R$ 600,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="peptidios-neuroceptix">
+        </details>
+          <details class="brand-card" id="peptidios-neuroceptix">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -1872,6 +1911,7 @@ a{color:inherit}
           <div class="brand-feature logo-neuroceptix">
             <span class="logo-img logo-neuroceptix" role="img" aria-label="NEUROCEPTIX"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -2232,8 +2272,9 @@ a{color:inherit}
                 <span class="price">R$ 570,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="peptidios-nordyx">
+        </details>
+          <details class="brand-card" id="peptidios-nordyx">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -2244,6 +2285,7 @@ a{color:inherit}
           <div class="brand-feature logo-nordyx">
             <span class="logo-img logo-nordyx" role="img" aria-label="NORDYX"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -2309,8 +2351,9 @@ a{color:inherit}
                 <span class="price">R$ 480,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="peptidios-novax">
+        </details>
+          <details class="brand-card" id="peptidios-novax">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -2321,6 +2364,7 @@ a{color:inherit}
           <div class="brand-feature logo-novax">
             <span class="logo-img logo-novax" role="img" aria-label="NOVAX"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -2470,8 +2514,9 @@ a{color:inherit}
                 <span class="price">R$ 640,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="peptidios-oxygen-kw">
+        </details>
+          <details class="brand-card" id="peptidios-oxygen-kw">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -2482,6 +2527,7 @@ a{color:inherit}
           <div class="brand-feature logo-oxygen">
             <span class="logo-img logo-oxygen" role="img" aria-label="OXYGEN KW"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -2617,8 +2663,9 @@ a{color:inherit}
                 <span class="price">R$ 620,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="peptidios-zphcd">
+        </details>
+          <details class="brand-card" id="peptidios-zphcd">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -2629,6 +2676,7 @@ a{color:inherit}
           <div class="brand-feature logo-zphcd">
             <span class="logo-img logo-zphcd" role="img" aria-label="ZPHCD"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -2806,8 +2854,9 @@ a{color:inherit}
                 <span class="price">R$ 465,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="peptidios-peptigen">
+        </details>
+          <details class="brand-card" id="peptidios-peptigen">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -2818,6 +2867,7 @@ a{color:inherit}
           <div class="brand-feature logo-peptigen1">
             <span class="logo-img logo-peptigen1" role="img" aria-label="PEPTIGEN"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -3079,7 +3129,7 @@ a{color:inherit}
                 <span class="price">R$ 1.000,00</span>
               </li>
           </ul>
-        </section>
+        </details>
         </div>
       </details>
     <details class="category" id="premium">
@@ -3092,7 +3142,8 @@ a{color:inherit}
           <span class="cat-chevron">+</span>
         </summary>
         <div class="category-body">
-          <section class="brand-card" id="premium-alpha-pharma">
+          <details class="brand-card" id="premium-alpha-pharma">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -3103,6 +3154,7 @@ a{color:inherit}
           <div class="brand-feature logo-alpha-pharma">
             <span class="logo-img logo-alpha-pharma" role="img" aria-label="ALPHA PHARMA"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -3301,8 +3353,9 @@ a{color:inherit}
                 <span class="price">R$ 750,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="premium-canada">
+        </details>
+          <details class="brand-card" id="premium-canada">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -3313,6 +3366,7 @@ a{color:inherit}
           <div class="brand-feature logo-canada">
             <span class="logo-img logo-canada" role="img" aria-label="CANADA"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -3455,8 +3509,9 @@ a{color:inherit}
                 <span class="price">R$ 500,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="premium-cooper-pharma">
+        </details>
+          <details class="brand-card" id="premium-cooper-pharma">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -3467,6 +3522,7 @@ a{color:inherit}
           <div class="brand-feature logo-cooper">
             <span class="logo-img logo-cooper" role="img" aria-label="COOPER PHARMA"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -3700,8 +3756,9 @@ a{color:inherit}
                 <span class="price">R$ 350,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="premium-eminence-labs">
+        </details>
+          <details class="brand-card" id="premium-eminence-labs">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -3712,6 +3769,7 @@ a{color:inherit}
           <div class="brand-feature logo-eminence">
             <span class="logo-img logo-eminence" role="img" aria-label="EMINENCE LABS"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -3875,8 +3933,9 @@ a{color:inherit}
                 <span class="price">R$ 180,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="premium-geniqs">
+        </details>
+          <details class="brand-card" id="premium-geniqs">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -3887,6 +3946,7 @@ a{color:inherit}
           <div class="brand-feature logo-geniqs">
             <span class="logo-img logo-geniqs" role="img" aria-label="GENIQS"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -3952,8 +4012,9 @@ a{color:inherit}
                 <span class="price">R$ 350,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="premium-pharmacom">
+        </details>
+          <details class="brand-card" id="premium-pharmacom">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -3964,6 +4025,7 @@ a{color:inherit}
           <div class="brand-feature logo-pharmacom">
             <span class="logo-img logo-pharmacom" role="img" aria-label="PHARMACOM"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -4218,8 +4280,9 @@ a{color:inherit}
                 <span class="price">R$ 440,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="premium-royal-pharma">
+        </details>
+          <details class="brand-card" id="premium-royal-pharma">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -4230,6 +4293,7 @@ a{color:inherit}
           <div class="brand-feature logo-royal">
             <span class="logo-img logo-royal" role="img" aria-label="ROYAL PHARMA"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -4323,8 +4387,9 @@ a{color:inherit}
                 <span class="price">R$ 290,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="premium-zphcd">
+        </details>
+          <details class="brand-card" id="premium-zphcd">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -4335,6 +4400,7 @@ a{color:inherit}
           <div class="brand-feature logo-zphcd">
             <span class="logo-img logo-zphcd" role="img" aria-label="ZPHCD"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -4638,8 +4704,9 @@ a{color:inherit}
                 <span class="price">R$ 475,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="premium-idnpharmatech">
+        </details>
+          <details class="brand-card" id="premium-idnpharmatech">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -4650,6 +4717,7 @@ a{color:inherit}
           <div class="brand-feature logo-idn-pharmatech">
             <span class="logo-img logo-idn-pharmatech" role="img" aria-label="IDNPHARMATECH"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -4729,7 +4797,7 @@ a{color:inherit}
                 <span class="price">R$ 150,00</span>
               </li>
           </ul>
-        </section>
+        </details>
         </div>
       </details>
     <details class="category" id="importadas">
@@ -4742,7 +4810,8 @@ a{color:inherit}
           <span class="cat-chevron">+</span>
         </summary>
         <div class="category-body">
-          <section class="brand-card" id="importadas-king-pharma">
+          <details class="brand-card" id="importadas-king-pharma">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -4753,6 +4822,7 @@ a{color:inherit}
           <div class="brand-feature logo-king-pharma">
             <span class="logo-img logo-king-pharma" role="img" aria-label="KING PHARMA"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -4965,8 +5035,9 @@ a{color:inherit}
                 <span class="price">R$ 195,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="importadas-lander-gold">
+        </details>
+          <details class="brand-card" id="importadas-lander-gold">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -4977,6 +5048,7 @@ a{color:inherit}
           <div class="brand-feature logo-lander-gold">
             <span class="logo-img logo-lander-gold" role="img" aria-label="LANDER GOLD"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -5063,8 +5135,9 @@ a{color:inherit}
                 <span class="price">R$ 180,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="importadas-landerlan">
+        </details>
+          <details class="brand-card" id="importadas-landerlan">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -5075,6 +5148,7 @@ a{color:inherit}
           <div class="brand-feature logo-landerlan">
             <span class="logo-img logo-landerlan" role="img" aria-label="LANDERLAN"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -5189,8 +5263,9 @@ a{color:inherit}
                 <span class="price">R$ 125,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="importadas-muscle-labs">
+        </details>
+          <details class="brand-card" id="importadas-muscle-labs">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -5201,6 +5276,7 @@ a{color:inherit}
           <div class="brand-feature logo-muscle-labs">
             <span class="logo-img logo-muscle-labs" role="img" aria-label="MUSCLE LABS"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -5413,8 +5489,9 @@ a{color:inherit}
                 <span class="price">R$ 190,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="importadas-one1-pharma">
+        </details>
+          <details class="brand-card" id="importadas-one1-pharma">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -5425,6 +5502,7 @@ a{color:inherit}
           <div class="brand-feature logo-one1-pharma">
             <span class="logo-img logo-one1-pharma" role="img" aria-label="ONE1 PHARMA"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -5665,7 +5743,7 @@ a{color:inherit}
                 <span class="price">R$ 230,00</span>
               </li>
           </ul>
-        </section>
+        </details>
         </div>
       </details>
     <details class="category" id="farmacia">
@@ -5678,7 +5756,8 @@ a{color:inherit}
           <span class="cat-chevron">+</span>
         </summary>
         <div class="category-body">
-          <section class="brand-card" id="farmacia-farmacia">
+          <details class="brand-card" id="farmacia-farmacia">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -5689,6 +5768,7 @@ a{color:inherit}
           <div class="brand-feature logo-cure-wordmark">
             <span class="logo-img logo-cure-wordmark" role="img" aria-label="FARMÁCIA"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -5971,8 +6051,9 @@ a{color:inherit}
                 <span class="price">R$ 280,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="farmacia-gh">
+        </details>
+          <details class="brand-card" id="farmacia-gh">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -5983,6 +6064,7 @@ a{color:inherit}
           <div class="brand-feature logo-cure-wordmark">
             <span class="logo-img logo-cure-wordmark" role="img" aria-label="GH"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -6153,8 +6235,9 @@ a{color:inherit}
                 <span class="price">R$ 4.150,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="farmacia-manipulados">
+        </details>
+          <details class="brand-card" id="farmacia-manipulados">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -6165,6 +6248,7 @@ a{color:inherit}
           <div class="brand-feature logo-cure-wordmark">
             <span class="logo-img logo-cure-wordmark" role="img" aria-label="MANIPULADOS"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -6279,8 +6363,9 @@ a{color:inherit}
                 <span class="price">R$ 150,00</span>
               </li>
           </ul>
-        </section>
-          <section class="brand-card" id="farmacia-dragon-elite">
+        </details>
+          <details class="brand-card" id="farmacia-dragon-elite">
+          <summary>
           <div class="brand-kicker">
             <span class="brand-kicker-left">
               <span class="mini-seal" role="img" aria-label="CURE Pharmaceuticals"></span>
@@ -6291,6 +6376,7 @@ a{color:inherit}
           <div class="brand-feature logo-dragon-elite">
             <span class="logo-img logo-dragon-elite" role="img" aria-label="DRAGON ELITE"></span>
           </div>
+          </summary>
           <ul class="product-list">
             <li class="product-row">
                 <div class="product-info">
@@ -6454,7 +6540,7 @@ a{color:inherit}
                 <span class="price">R$ 195,00</span>
               </li>
           </ul>
-        </section>
+        </details>
         </div>
       </details>
   </main>
