@@ -1,0 +1,26 @@
+.product-row.is-unavailable {
+  background: #f5f6f6;
+  opacity: 0.68;
+}
+
+.product-row.is-unavailable .price {
+  text-decoration: line-through;
+}
+
+.sync-unavailable-badge {
+  display: block;
+  width: fit-content;
+  margin-top: 3px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: #5d6868;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+}
+
+.sync-created-card .brand-feature {
+  min-height: 44px;
+}
