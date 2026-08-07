@@ -66,9 +66,15 @@
     return normalize(value).toLowerCase().replace(/\s+/g, "-");
   }
 
+  function brandCardSlug(value) {
+    var brandSlug = slug(value);
+    if (brandSlug === "one-1-pharma") return "one1-pharma";
+    return brandSlug;
+  }
+
   function createBrandCard(category, product) {
     var card = document.createElement("details");
-    var brandSlug = slug(product.brand);
+    var brandSlug = brandCardSlug(product.brand);
     card.className = "brand-card sync-created-card";
     card.id = category.id + "-" + brandSlug;
     card.dataset.syncBrand = product.brand;
@@ -109,7 +115,7 @@
     var categoryId = categoryIdFor(product);
     var category = categoryId ? document.getElementById(categoryId) : null;
     if (!category) return null;
-    var cardId = categoryId + "-" + slug(product.brand);
+    var cardId = categoryId + "-" + brandCardSlug(product.brand);
     return document.getElementById(cardId) || createBrandCard(category, product);
   }
 
@@ -152,7 +158,7 @@
   function updateRow(row, product) {
     row.dataset.sourceId = product.id;
     row.dataset.syncOrder = String(product.sortOrder || 0);
-    row.hidden = Boolean(product.isDeleted);
+    row.hidden = false;
     row.querySelector(".name").textContent = product.name;
     var sub = row.querySelector(".sub");
     if (!sub && product.presentation) {
@@ -209,8 +215,8 @@
 
     document.querySelectorAll("li.product-row[data-source-id]").forEach(function (row) {
       var product = productsById.get(row.dataset.sourceId);
-      if (!product) {
-        setUnavailable(row, true);
+      if (!product || product.isDeleted) {
+        row.remove();
         return;
       }
       var card = ensureTargetCard(product);
@@ -221,6 +227,7 @@
     });
 
     snapshot.products.forEach(function (product) {
+      if (product.isDeleted) return;
       var escapedId = window.CSS && CSS.escape ? CSS.escape(product.id) : product.id.replace(/"/g, "\\\"");
       if (document.querySelector('li.product-row[data-source-id="' + escapedId + '"]')) return;
       var card = ensureTargetCard(product);
