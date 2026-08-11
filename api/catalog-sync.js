@@ -65,10 +65,8 @@ function hashProducts(products) {
     item.brand,
     item.name,
     item.presentation,
+    item.descriptionText,
     item.finalPrice,
-    item.status,
-    item.sortOrder,
-    item.isDeleted,
   ]))).digest("hex");
 }
 

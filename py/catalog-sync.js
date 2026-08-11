@@ -142,22 +142,8 @@
     return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(number);
   }
 
-  function setUnavailable(row, unavailable) {
-    row.classList.toggle("is-unavailable", unavailable);
-    row.dataset.syncStatus = unavailable ? "unavailable" : "active";
-    var badge = row.querySelector(".sync-unavailable-badge");
-    if (unavailable && !badge) {
-      badge = document.createElement("span");
-      badge.className = "sync-unavailable-badge";
-      badge.textContent = "INDISPONÍVEL";
-      row.querySelector(".product-info")?.appendChild(badge);
-    }
-    if (!unavailable && badge) badge.remove();
-  }
-
   function updateRow(row, product) {
     row.dataset.sourceId = product.id;
-    row.dataset.syncOrder = String(product.sortOrder || 0);
     row.hidden = false;
     row.querySelector(".name").textContent = product.name;
     var sub = row.querySelector(".sub");
@@ -170,8 +156,17 @@
       sub.textContent = product.presentation || "";
       sub.hidden = !product.presentation;
     }
+    var description = row.querySelector(".sync-description");
+    if (!description && product.descriptionText) {
+      description = document.createElement("span");
+      description.className = "sync-description";
+      row.querySelector(".product-info")?.appendChild(description);
+    }
+    if (description) {
+      description.textContent = product.descriptionText || "";
+      description.hidden = !product.descriptionText;
+    }
     row.querySelector(".price").textContent = formatPrice(product.finalPrice);
-    setUnavailable(row, product.status === "inactive" || product.status === "out_of_stock");
   }
 
   function updateCounts() {
@@ -195,18 +190,6 @@
     });
   }
 
-  function sortRows() {
-    document.querySelectorAll("ul.product-list").forEach(function (list) {
-      var rows = Array.from(list.querySelectorAll(":scope > li.product-row"));
-      rows.sort(function (a, b) {
-        var aOrder = a.dataset.syncOrder === undefined ? Number.MAX_SAFE_INTEGER : Number(a.dataset.syncOrder);
-        var bOrder = b.dataset.syncOrder === undefined ? Number.MAX_SAFE_INTEGER : Number(b.dataset.syncOrder);
-        return aOrder - bOrder;
-      });
-      rows.forEach(function (row) { list.appendChild(row); });
-    });
-  }
-
   function applySnapshot(snapshot) {
     if (!snapshot || !snapshot.complete || !Array.isArray(snapshot.products)) return;
     attachStableIds();
@@ -215,10 +198,7 @@
 
     document.querySelectorAll("li.product-row[data-source-id]").forEach(function (row) {
       var product = productsById.get(row.dataset.sourceId);
-      if (!product || product.isDeleted) {
-        row.remove();
-        return;
-      }
+      if (!product) return;
       var card = ensureTargetCard(product);
       if (!card) return;
       var list = card.querySelector("ul.product-list");
@@ -227,7 +207,6 @@
     });
 
     snapshot.products.forEach(function (product) {
-      if (product.isDeleted) return;
       var escapedId = window.CSS && CSS.escape ? CSS.escape(product.id) : product.id.replace(/"/g, "\\\"");
       if (document.querySelector('li.product-row[data-source-id="' + escapedId + '"]')) return;
       var card = ensureTargetCard(product);
@@ -237,7 +216,6 @@
       card.querySelector("ul.product-list")?.appendChild(row);
     });
 
-    sortRows();
     updateCounts();
     document.documentElement.dataset.catalogSyncHash = snapshot.hash;
     document.documentElement.dataset.catalogSyncAt = snapshot.fetchedAt;
