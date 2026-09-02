@@ -24,6 +24,7 @@
       if (!card) return;
       var candidates = Array.from(card.querySelectorAll("li.product-row")).filter(function (row) {
         if (claimed.has(row)) return false;
+        if (row.dataset.sourceId && row.dataset.sourceId !== entry.sourceId) return false;
         return normalize(row.querySelector(".name")?.textContent) === normalize(entry.name);
       });
       var exact = candidates.filter(function (row) {
@@ -204,8 +205,25 @@
     });
   }
 
+  function attachGhRowsByDisplayedBrand(products) {
+    var card = document.getElementById("farmacia-gh");
+    if (!card) return;
+    products.filter(function (product) {
+      return normalize(product.group) === "GH" && product.displayBrand;
+    }).forEach(function (product) {
+      if (card.querySelector('li.product-row[data-source-id="' + product.id.replace(/"/g, '\\"') + '"]')) return;
+      var expectedBrand = normalize("MARCA: " + product.displayBrand);
+      var candidates = Array.from(card.querySelectorAll("li.product-row:not([data-source-id])")).filter(function (row) {
+        return normalize(row.querySelector(".name")?.textContent) === normalize(product.name)
+          && normalize(row.querySelector(".sub")?.textContent) === expectedBrand;
+      });
+      if (candidates.length === 1) candidates[0].dataset.sourceId = product.id;
+    });
+  }
+
   function applySnapshot(snapshot) {
     if (!snapshot || !snapshot.complete || !Array.isArray(snapshot.products)) return;
+    attachGhRowsByDisplayedBrand(snapshot.products);
     attachStableIds();
     hideLegacyUnmappedRows();
     var productsById = new Map(snapshot.products.map(function (product) { return [product.id, product]; }));
@@ -229,6 +247,13 @@
       updateRow(row, product);
       card.querySelector("ul.product-list")?.appendChild(row);
     });
+
+    var ghCard = document.getElementById("farmacia-gh");
+    if (ghCard) {
+      ghCard.querySelectorAll("li.product-row").forEach(function (row) {
+        row.hidden = !row.dataset.sourceId || !productsById.has(row.dataset.sourceId);
+      });
+    }
 
     updateCounts();
     document.documentElement.dataset.catalogSyncHash = snapshot.hash;

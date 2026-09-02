@@ -13,7 +13,7 @@
 .sync-brand-mark {
   display: block;
   margin-top: 3px;
-  color: #ed1c2e;
+  color: var(--cyan);
   font-size: 10.5px;
   font-weight: 800;
   letter-spacing: .02em;
