@@ -230,7 +230,10 @@
 
     document.querySelectorAll("li.product-row[data-source-id]").forEach(function (row) {
       var product = productsById.get(row.dataset.sourceId);
-      if (!product) return;
+      if (!product) {
+        row.hidden = true;
+        return;
+      }
       var card = ensureTargetCard(product);
       if (!card) return;
       var list = card.querySelector("ul.product-list");

@@ -6,6 +6,11 @@
   line-height: 1.3;
 }
 
+li.product-row[hidden],
+details.brand-card[hidden] {
+  display: none !important;
+}
+
 .sync-created-card .brand-feature {
   min-height: 44px;
 }
