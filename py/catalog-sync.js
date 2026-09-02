@@ -48,8 +48,7 @@
           && normalize(row.querySelector(".sub")?.textContent) === normalize(entry.presentation);
       });
       if (candidates.length !== 1) return;
-      candidates[0].hidden = true;
-      candidates[0].dataset.syncLegacy = "unmapped";
+      candidates[0].remove();
     });
   }
 
@@ -231,7 +230,7 @@
     document.querySelectorAll("li.product-row[data-source-id]").forEach(function (row) {
       var product = productsById.get(row.dataset.sourceId);
       if (!product) {
-        row.hidden = true;
+        row.remove();
         return;
       }
       var card = ensureTargetCard(product);
@@ -254,7 +253,7 @@
     var ghCard = document.getElementById("farmacia-gh");
     if (ghCard) {
       ghCard.querySelectorAll("li.product-row").forEach(function (row) {
-        row.hidden = !row.dataset.sourceId || !productsById.has(row.dataset.sourceId);
+        if (!row.dataset.sourceId || !productsById.has(row.dataset.sourceId)) row.remove();
       });
     }
 
