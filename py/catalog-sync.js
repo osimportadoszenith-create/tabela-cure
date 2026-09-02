@@ -156,6 +156,21 @@
       sub.textContent = product.presentation || "";
       sub.hidden = !product.presentation;
     }
+    var isGh = normalize(product.group) === "GH";
+    var brandMark = row.querySelector(".sync-brand-mark");
+    if (!brandMark && isGh && product.displayBrand) {
+      brandMark = document.createElement("span");
+      brandMark.className = "sync-brand-mark";
+      row.querySelector(".product-info")?.appendChild(brandMark);
+    }
+    if (brandMark) {
+      var displayBrand = product.displayBrand || product.brand || "";
+      var brandSlug = brandCardSlug(displayBrand);
+      brandMark.className = "sync-brand-mark logo-" + brandSlug;
+      brandMark.textContent = displayBrand;
+      brandMark.setAttribute("aria-label", "Marca " + displayBrand);
+      brandMark.hidden = !isGh || !displayBrand;
+    }
     var description = row.querySelector(".sync-description");
     if (!description && product.descriptionText) {
       description = document.createElement("span");

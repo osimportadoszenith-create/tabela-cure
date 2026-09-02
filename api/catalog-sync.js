@@ -63,6 +63,7 @@ function hashProducts(products) {
     item.category,
     item.group,
     item.brand,
+    item.displayBrand,
     item.name,
     item.presentation,
     item.descriptionText,
