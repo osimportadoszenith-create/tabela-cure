@@ -20,28 +20,10 @@
   border: 1px solid rgba(10, 40, 38, .12);
   border-radius: 7px;
   background-color: #fff;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
   color: #174542;
   font-size: 10px;
   font-weight: 800;
   letter-spacing: .045em;
   line-height: 1.1;
   text-transform: uppercase;
-}
-
-/* Quando a identidade cadastrada no catálogo já possui logo, o texto fica como
-   alternativa acessível e a arte oficial ocupa o selo. */
-.sync-brand-mark[style],
-.sync-brand-mark[class*="logo-"] {
-  text-indent: -9999px;
-  overflow: hidden;
-}
-
-.sync-brand-mark.logo-criscy,
-.sync-brand-mark.logo-genotropin,
-.sync-brand-mark.logo-fiocruz,
-.sync-brand-mark.logo-omnitrope {
-  text-indent: 0;
 }

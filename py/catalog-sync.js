@@ -165,8 +165,7 @@
     }
     if (brandMark) {
       var displayBrand = product.displayBrand || product.brand || "";
-      var brandSlug = brandCardSlug(displayBrand);
-      brandMark.className = "sync-brand-mark logo-" + brandSlug;
+      brandMark.className = "sync-brand-mark";
       brandMark.textContent = displayBrand;
       brandMark.setAttribute("aria-label", "Marca " + displayBrand);
       brandMark.hidden = !isGh || !displayBrand;
