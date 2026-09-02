@@ -166,7 +166,7 @@
     if (brandMark) {
       var displayBrand = product.displayBrand || product.brand || "";
       brandMark.className = "sync-brand-mark";
-      brandMark.textContent = displayBrand;
+      brandMark.textContent = "MARCA: " + displayBrand;
       brandMark.setAttribute("aria-label", "Marca " + displayBrand);
       brandMark.hidden = !isGh || !displayBrand;
     }
