@@ -183,6 +183,21 @@
     row.querySelector(".price").textContent = formatPrice(product.finalPrice);
   }
 
+  function brandNameFromLabel(value) {
+    return String(value || "").replace(/^\s*\d+\s+PRODUTOS?\s*-\s*/i, "").trim();
+  }
+
+  function showBrandNamesOnly() {
+    document.querySelectorAll(".brand-card .brand-kicker-name").forEach(function (current) {
+      var card = current.closest(".brand-card");
+      var brand = card?.dataset.syncBrand || brandNameFromLabel(current.textContent);
+      if (!brand) return;
+      if (card && !card.dataset.syncBrand) card.dataset.syncBrand = brand;
+      current.textContent = brand;
+      current.setAttribute("aria-label", "Marca " + brand);
+    });
+  }
+
   function updateCounts() {
     document.querySelectorAll("details.category:not(#frete)").forEach(function (category) {
       var visibleCards = 0;
@@ -195,8 +210,9 @@
         visibleProducts += count;
         var current = card.querySelector(".brand-kicker-name");
         if (current) {
-          var brand = card.dataset.syncBrand || current.textContent.replace(/^\s*\d+\s+PRODUTOS?\s*-\s*/i, "").trim();
-          current.textContent = count + (count === 1 ? " PRODUTO - " : " PRODUTOS - ") + brand;
+          var brand = card.dataset.syncBrand || brandNameFromLabel(current.textContent);
+          current.textContent = brand;
+          current.setAttribute("aria-label", "Marca " + brand);
         }
       });
       var summary = category.querySelector(":scope > summary small");
@@ -211,7 +227,7 @@
     document.querySelectorAll("details.brand-card").forEach(function (card) {
       var kicker = card.querySelector(".brand-kicker-name");
       var cardBrand = card.dataset.syncBrand || (kicker
-        ? kicker.textContent.replace(/^\s*\d+\s+PRODUTOS?\s*-\s*/i, "").trim()
+        ? brandNameFromLabel(kicker.textContent)
         : "");
       var brand = byName.get(normalize(cardBrand));
       if (!brand) return;
@@ -294,6 +310,7 @@
     }
   }
 
+  showBrandNamesOnly();
   poll();
   window.setInterval(poll, 10_000);
 })();
