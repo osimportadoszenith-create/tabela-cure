@@ -41,12 +41,13 @@ details.brand-card[hidden] {
 }
 
 .category > summary .cat-icon {
-  width: 54px;
-  height: 38px;
-  border-radius: 12px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
   border-color: rgba(255, 255, 255, .45);
   background-size: contain;
   background-color: rgba(255, 255, 255, .96);
+  box-shadow: 0 4px 12px rgba(0, 67, 61, .2);
 }
 
 .category > summary .cat-title h2 {
