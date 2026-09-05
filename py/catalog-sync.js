@@ -119,6 +119,57 @@
     return document.getElementById(cardId) || createBrandCard(category, product);
   }
 
+  function usesProductDivisions(card) {
+    var category = card?.closest("details.category");
+    return category?.id === "premium" || category?.id === "importadas";
+  }
+
+  function productDivisionName(product) {
+    return normalize(product.group).indexOf("ORAIS") >= 0 ? "ORAIS" : "INJETÁVEIS";
+  }
+
+  function ensureProductDivision(card, divisionName) {
+    var container = card.querySelector(":scope > .brand-divisions");
+    if (!container) {
+      container = document.createElement("div");
+      container.className = "brand-divisions";
+      card.querySelector(":scope > summary")?.after(container);
+    }
+
+    var divisionSlug = divisionName === "ORAIS" ? "orais" : "injetaveis";
+    var division = container.querySelector('[data-product-division="' + divisionSlug + '"]');
+    if (!division) {
+      division = document.createElement("details");
+      division.className = "product-division";
+      division.dataset.productDivision = divisionSlug;
+      var summary = document.createElement("summary");
+      summary.textContent = divisionName;
+      var list = document.createElement("ul");
+      list.className = "product-list";
+      division.append(summary, list);
+      container.appendChild(division);
+    }
+    return division.querySelector(":scope > .product-list");
+  }
+
+  function productListFor(card, product) {
+    if (!usesProductDivisions(card)) return card.querySelector(":scope > ul.product-list");
+    return ensureProductDivision(card, productDivisionName(product));
+  }
+
+  function prepareDividedCards() {
+    document.querySelectorAll("#premium .brand-card, #importadas .brand-card").forEach(function (card) {
+      if (card.dataset.divisionToggleReady) return;
+      card.dataset.divisionToggleReady = "true";
+      card.addEventListener("toggle", function () {
+        if (!card.open) return;
+        card.querySelectorAll(":scope > .brand-divisions > .product-division").forEach(function (division) {
+          division.open = false;
+        });
+      });
+    });
+  }
+
   function createProductRow(product) {
     var row = document.createElement("li");
     row.className = "product-row sync-created-row";
@@ -203,7 +254,7 @@
       var visibleCards = 0;
       var visibleProducts = 0;
       category.querySelectorAll(":scope > .category-body > details.brand-card").forEach(function (card) {
-        var rows = Array.from(card.querySelectorAll(":scope > ul.product-list > li.product-row"));
+        var rows = Array.from(card.querySelectorAll("li.product-row"));
         var count = rows.filter(function (row) { return !row.hidden; }).length;
         card.hidden = count === 0;
         if (!card.hidden) visibleCards += 1;
@@ -214,6 +265,9 @@
           current.textContent = brand;
           current.setAttribute("aria-label", "Marca " + brand);
         }
+        card.querySelectorAll(":scope > .brand-divisions > .product-division").forEach(function (division) {
+          division.hidden = division.querySelectorAll(":scope > ul.product-list > li.product-row:not([hidden])").length === 0;
+        });
       });
       var summary = category.querySelector(":scope > summary small");
       if (summary) summary.textContent = visibleProducts + " produtos · " + visibleCards + " marcas";
@@ -271,7 +325,7 @@
       }
       var card = ensureTargetCard(product);
       if (!card) return;
-      var list = card.querySelector("ul.product-list");
+      var list = productListFor(card, product);
       if (list && row.parentElement !== list) list.appendChild(row);
       updateRow(row, product);
     });
@@ -283,7 +337,7 @@
       if (!card) return;
       var row = createProductRow(product);
       updateRow(row, product);
-      card.querySelector("ul.product-list")?.appendChild(row);
+      productListFor(card, product)?.appendChild(row);
     });
 
     var ghCard = document.getElementById("farmacia-gh");
@@ -293,6 +347,12 @@
       });
     }
 
+    document.querySelectorAll("#premium .brand-card, #importadas .brand-card").forEach(function (card) {
+      var legacyList = card.querySelector(":scope > ul.product-list");
+      if (legacyList) legacyList.remove();
+    });
+
+    prepareDividedCards();
     updateCounts();
     applyBrandLogos(snapshot.brands, snapshot.sourceUrl);
     document.documentElement.dataset.catalogSyncHash = snapshot.hash;

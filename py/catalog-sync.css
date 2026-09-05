@@ -162,6 +162,54 @@ details.brand-card[hidden] {
   border-radius: 0 0 15px 15px;
 }
 
+.brand-divisions {
+  display: grid;
+  gap: 9px;
+  padding: 12px;
+  background: var(--panel);
+  border-radius: 0 0 15px 15px;
+}
+
+.product-division {
+  overflow: hidden;
+  border: 1px solid rgba(0, 169, 154, .3);
+  border-radius: 13px;
+  background: var(--panel-2);
+}
+
+.product-division > summary {
+  display: flex;
+  align-items: center;
+  min-height: 46px;
+  padding: 11px 48px 11px 16px;
+  color: #08786f;
+  font-family: var(--display);
+  font-size: 14px;
+  letter-spacing: .1em;
+  background: rgba(0, 169, 154, .075);
+}
+
+.brand-card[open] .product-division > summary::after {
+  content: "+";
+  top: 8px;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--panel);
+}
+
+.brand-card[open] .product-division[open] > summary::after {
+  content: "\2212";
+}
+
+.product-division > .product-list {
+  margin: 0;
+  padding: 4px 12px 10px;
+  border-top: 1px solid var(--line);
+  background: var(--panel);
+}
+
 @media (max-width: 560px) {
   .brand-card > summary {
     grid-template-columns: 86px minmax(0, 1fr) 32px;
