@@ -249,6 +249,66 @@
     });
   }
 
+  function createInformationPopup() {
+    if (document.getElementById("information-button")) return;
+    var freight = document.getElementById("frete");
+    if (!freight) return;
+
+    var trigger = document.createElement("button");
+    trigger.id = "information-button";
+    trigger.className = "information-trigger";
+    trigger.type = "button";
+    trigger.setAttribute("aria-haspopup", "dialog");
+    trigger.setAttribute("aria-controls", "information-popup");
+    trigger.innerHTML = '<span class="information-icon" aria-hidden="true">i</span>'
+      + '<span class="information-title"><strong>INFORMAÇÕES</strong><small>VEJA COMO FUNCIONA</small></span>'
+      + '<span class="information-open" aria-hidden="true">+</span>';
+
+    var steps = [
+      ["1", "Pagamento", "Opções disponíveis", "Transferência bancária, Pix, depósito bancário e cartão de crédito em até 12x. Compras no cartão de crédito têm taxa de 7%."],
+      ["2", "Envio rápido", "Em até 72 horas após o pagamento", "Após a confirmação do pagamento, o pedido entra em preparação e é enviado dentro do prazo informado."],
+      ["3", "Rastreio", "Código de rastreio", "O código de rastreio será fornecido em até 72 horas após a postagem. Solicite seu código de segunda a sexta-feira, após as 18h."],
+      ["4", "Seguro", "Apenas para envios via transportadora", "Asseguramos somente envios solicitados via transportadora."],
+      ["5", "Endereço", "Dados de entrega", "Se o cliente fornecer um endereço ou CEP incorretos e a encomenda for extraviada ou perdida, não nos responsabilizaremos, ainda que o seguro tenha sido pago."],
+      ["6", "Recebimento", "Abertura da mercadoria", "Para sua segurança, filme a abertura da caixa. O vídeo deve ser 100% nítido, mostrando a caixa e o conteúdo ao ser retirado, sem cortes ou pausas. Fotografamos todos os pedidos antes de embalá-los."]
+    ];
+
+    var overlay = document.createElement("div");
+    overlay.id = "information-popup";
+    overlay.className = "information-overlay";
+    overlay.hidden = true;
+    overlay.innerHTML = '<section class="information-dialog" role="dialog" aria-modal="true" aria-labelledby="information-heading">'
+      + '<header class="information-header"><div><small>BEM-VINDO À CURE PHARMACEUTICALS</small><h2 id="information-heading">Veja como funciona</h2><p>Processo simples para receber seus produtos com segurança e agilidade.</p></div>'
+      + '<button class="information-close" type="button" aria-label="Fechar informações">&times;</button></header>'
+      + '<div class="information-content"><div class="information-steps">'
+      + steps.map(function (step) {
+        return '<article class="information-step"><span class="information-number">' + step[0] + '</span><div><h3>' + step[1] + '</h3><strong>' + step[2] + '</strong><p>' + step[3] + '</p></div></article>';
+      }).join("")
+      + '</div><a class="information-source" href="https://curepharmaceuticalspy.com/sobre" target="_blank" rel="noopener">VER INFORMAÇÕES NO SITE OFICIAL</a></div></section>';
+
+    function closePopup() {
+      overlay.hidden = true;
+      document.body.classList.remove("information-modal-open");
+      trigger.focus();
+    }
+
+    trigger.addEventListener("click", function () {
+      overlay.hidden = false;
+      document.body.classList.add("information-modal-open");
+      overlay.querySelector(".information-close")?.focus();
+    });
+    overlay.querySelector(".information-close")?.addEventListener("click", closePopup);
+    overlay.addEventListener("click", function (event) {
+      if (event.target === overlay) closePopup();
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && !overlay.hidden) closePopup();
+    });
+
+    freight.after(trigger);
+    document.body.appendChild(overlay);
+  }
+
   function updateCounts() {
     document.querySelectorAll("details.category:not(#frete)").forEach(function (category) {
       var visibleCards = 0;
@@ -371,6 +431,7 @@
   }
 
   showBrandNamesOnly();
+  createInformationPopup();
   poll();
   window.setInterval(poll, 10_000);
 })();
