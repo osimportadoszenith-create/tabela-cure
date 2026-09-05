@@ -204,6 +204,26 @@
     });
   }
 
+  function applyBrandLogos(brands, sourceUrl) {
+    var byName = new Map((brands || []).map(function (brand) {
+      return [normalize(brand.name), brand];
+    }));
+    document.querySelectorAll("details.brand-card").forEach(function (card) {
+      var kicker = card.querySelector(".brand-kicker-name");
+      var cardBrand = card.dataset.syncBrand || (kicker
+        ? kicker.textContent.replace(/^\s*\d+\s+PRODUTOS?\s*-\s*/i, "").trim()
+        : "");
+      var brand = byName.get(normalize(cardBrand));
+      if (!brand) return;
+      var logo = card.querySelector(".brand-feature .logo-img");
+      if (!logo) return;
+      var imageUrl = brand.imageData ? new URL(brand.imageData, sourceUrl || window.location.href).toString() : "";
+      logo.style.backgroundImage = imageUrl ? 'url("' + imageUrl.replace(/["\\]/g, "\\$&") + '")' : "none";
+      logo.style.backgroundPosition = brand.imagePosition || "center";
+      logo.dataset.syncBrandLogo = brand.name;
+    });
+  }
+
   function attachGhRowsByDisplayedBrand(products) {
     var card = document.getElementById("farmacia-gh");
     if (!card) return;
@@ -258,6 +278,7 @@
     }
 
     updateCounts();
+    applyBrandLogos(snapshot.brands, snapshot.sourceUrl);
     document.documentElement.dataset.catalogSyncHash = snapshot.hash;
     document.documentElement.dataset.catalogSyncAt = snapshot.fetchedAt;
   }

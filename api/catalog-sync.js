@@ -2,10 +2,11 @@
 
 const crypto = require("crypto");
 const https = require("https");
-const { parseSourceCatalog } = require("../lib/catalog-parser.cjs");
+const { parseSourceBrands, parseSourceCatalog } = require("../lib/catalog-parser.cjs");
 const catalogMap = require("../py/catalog-map.json");
 
 const SOURCE_URL = "https://curepharmaceuticalspy.com/";
+const BRANDS_URL = new URL("/api/brands", SOURCE_URL).toString();
 const CACHE_MS = 30_000;
 const REQUEST_TIMEOUT_MS = 20_000;
 const mappedSourceIds = new Set(catalogMap.mappings.map((item) => item.sourceId));
@@ -57,8 +58,8 @@ function requestText(url, redirects = 0) {
   });
 }
 
-function hashProducts(products) {
-  return crypto.createHash("sha256").update(JSON.stringify(products.map((item) => [
+function hashProducts(products, brands = []) {
+  const stableProducts = products.map((item) => [
     item.id,
     item.category,
     item.group,
@@ -68,7 +69,9 @@ function hashProducts(products) {
     item.presentation,
     item.descriptionText,
     item.finalPrice,
-  ]))).digest("hex");
+  ]);
+  const stableBrands = brands.map((item) => [item.id, item.name, item.imageData, item.imagePosition, item.updatedAt]);
+  return crypto.createHash("sha256").update(JSON.stringify([stableProducts, stableBrands])).digest("hex");
 }
 
 function validateCoverage(products) {
@@ -87,13 +90,14 @@ async function refresh() {
   refreshing = (async () => {
     lastAttemptAt = new Date().toISOString();
     try {
-      const html = await requestText(SOURCE_URL);
+      const [html, brandsJson] = await Promise.all([requestText(SOURCE_URL), requestText(BRANDS_URL)]);
       const parsed = parseSourceCatalog(html, {
         minimumProducts: 500,
         previousTotal: snapshot?.products.length || catalogMap.sourceTotal,
       });
+      const brands = parseSourceBrands(brandsJson);
       const coverage = validateCoverage(parsed.products);
-      const hash = hashProducts(parsed.products);
+      const hash = hashProducts(parsed.products, brands);
       const now = new Date().toISOString();
       if (hash !== snapshot?.hash) lastChangedAt = now;
       snapshot = {
@@ -102,6 +106,7 @@ async function refresh() {
         fetchedAt: now,
         hash,
         products: parsed.products,
+        brands,
         validation: { ...parsed.validation, ...coverage },
       };
       lastSuccessAt = now;
