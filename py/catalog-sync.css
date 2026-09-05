@@ -1,3 +1,7 @@
+:root {
+  --display: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+
 .sync-description {
   display: block;
   margin-top: 2px;
@@ -51,13 +55,16 @@ details.brand-card[hidden] {
 }
 
 .category > summary .cat-title h2 {
-  font-size: clamp(21px, 6vw, 29px);
+  font-size: clamp(20px, 4.6vw, 27px);
+  font-weight: 800;
+  letter-spacing: -.025em;
 }
 
 .category > summary .cat-title small {
   margin-top: 5px;
   font-size: 10.5px;
-  letter-spacing: .08em;
+  font-weight: 700;
+  letter-spacing: .055em;
 }
 
 .category > summary .cat-chevron {
@@ -110,7 +117,8 @@ details.brand-card[hidden] {
   color: #08786f;
   text-align: center;
   font-size: 15px;
-  letter-spacing: .055em;
+  font-weight: 800;
+  letter-spacing: .025em;
 }
 
 .brand-card > summary .brand-feature {
@@ -135,7 +143,8 @@ details.brand-card[hidden] {
   color: var(--text);
   font-family: var(--display);
   font-size: 12px;
-  letter-spacing: .12em;
+  font-weight: 800;
+  letter-spacing: .065em;
   text-align: right;
   white-space: nowrap;
 }
@@ -186,7 +195,8 @@ details.brand-card[hidden] {
   color: #08786f;
   font-family: var(--display);
   font-size: 14px;
-  letter-spacing: .1em;
+  font-weight: 800;
+  letter-spacing: .065em;
   background: rgba(0, 169, 154, .075);
 }
 
@@ -256,14 +266,16 @@ details.brand-card[hidden] {
 
 .information-title strong {
   font-family: var(--display);
-  font-size: clamp(21px, 6vw, 29px);
+  font-size: clamp(20px, 4.6vw, 27px);
+  font-weight: 800;
+  letter-spacing: -.025em;
   line-height: 1;
 }
 
 .information-title small {
   font-size: 10.5px;
   font-weight: 800;
-  letter-spacing: .08em;
+  letter-spacing: .055em;
 }
 
 .information-open {
@@ -323,6 +335,8 @@ details.brand-card[hidden] {
   margin: 5px 0 4px;
   font-family: var(--display);
   font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -.025em;
   line-height: 1;
 }
 
@@ -385,6 +399,8 @@ details.brand-card[hidden] {
   color: var(--text);
   font-family: var(--display);
   font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -.01em;
 }
 
 .information-step strong {
@@ -410,12 +426,23 @@ details.brand-card[hidden] {
   color: #08786f;
   font-family: var(--display);
   font-size: 11px;
-  letter-spacing: .08em;
+  font-weight: 800;
+  letter-spacing: .055em;
   text-align: center;
   text-decoration: none;
 }
 
 @media (max-width: 560px) {
+  .category > summary .cat-title h2 {
+    font-size: 17px;
+    letter-spacing: -.02em;
+  }
+
+  .category > summary .cat-title small {
+    font-size: 9.5px;
+    letter-spacing: .04em;
+  }
+
   .information-trigger {
     grid-template-columns: 44px minmax(0, 1fr) 34px;
     min-height: 68px;
@@ -428,7 +455,7 @@ details.brand-card[hidden] {
   }
 
   .information-title strong {
-    font-size: 22px;
+    font-size: 18px;
   }
 
   .information-open {
@@ -451,7 +478,7 @@ details.brand-card[hidden] {
   }
 
   .information-header h2 {
-    font-size: 25px;
+    font-size: 23px;
   }
 
   .information-header p {
@@ -499,7 +526,7 @@ details.brand-card[hidden] {
   .brand-card > summary .brand-kicker-name {
     grid-column: 2;
     padding: 7px 6px;
-    font-size: 12px;
+    font-size: 12.5px;
   }
 
   .brand-card > summary::before {
